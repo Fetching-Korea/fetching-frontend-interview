@@ -5,7 +5,7 @@
 ---
 - UI와 디자인에 제약을 두지 않습니다. 
   실제 상용화된 서비스라 생각하고 최대한 상식적인 웹을 구현해 주세요.
-- React , Redux, style-components를 사용하여 구현해 주세요. 
+- React, Redux, styled-components를 사용하여 구현해 주세요.
   (필요에 의해 추가적인 라이브러리를 사용하셔도 괜찮습니다.)
 - 반응형으로 구현해 주세요.
 - 기간: 5일
@@ -42,9 +42,9 @@
     - `sort`: number (0: 최신순, 1: 할인율, 2: 낮은 가격, 3: 높은 가격)
     - `needCount`: true
 
-- `브랜드`: https://fetching-careers.s3.ap-northeast-2.amazonaws.com/data/brands.json
+- `브랜드`: https://test.fetchingapp.co.kr/api/brands (GET)
 
-- `카테고리`: https://fetching-careers.s3.ap-northeast-2.amazonaws.com/data/categories.json
+- `카테고리`: https://test.fetchingapp.co.kr/api/categories (GET)
 
 ## 목표
 - 기본적인 React Component 및 Redux 활용법에 대해 확인.
