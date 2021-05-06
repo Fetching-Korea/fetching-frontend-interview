@@ -2,26 +2,33 @@ import React from "react";
 import { AppBar, Typography, Button, Box } from "@material-ui/core";
 import { Menu, Search, FavoriteBorder, ShoppingBasketOutlined } from "@material-ui/icons";
 import styled from "styled-components";
+import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 export default function Appbar() {
 	return (
-		<MyAppBar position="static">
+		<MyAppBar position="sticky">
 			<SpaceBetween>
-				<Row>
+				<Row style={{ marginRight: "50px" }}>
 					<MyButton>
-						<Menu />
+						<MenuIcon />
 					</MyButton>
-					<MyButton>
-						<Search />
-					</MyButton>
+					<MyLink to="/search">
+						<MyButton>
+							<SearchIcon />
+						</MyButton>
+					</MyLink>
 				</Row>
-				<Text>FETCHING</Text>
-				<Row>
+				<MyLink to="/">
 					<MyButton>
-						<FavoriteBorder />
+						<Text>반응형웹</Text>
+					</MyButton>
+				</MyLink>
+				<Row style={{ marginLeft: "50px" }}>
+					<MyButton>
+						<FavoriteBorderIcon />
 					</MyButton>
 					<MyButton>
-						<ShoppingBasketOutlined />
+						<ShoppingBasketOutlinedIcon />
 					</MyButton>
 				</Row>
 			</SpaceBetween>
@@ -30,8 +37,12 @@ export default function Appbar() {
 }
 
 const Text = styled(Typography)`
-	font-size: 23px;
+	font-size: 30px;
 	color: black;
+	word-break: keep-all;
+	@media screen and (max-width: 500px) {
+		font-size: 23px;
+	}
 `;
 
 const SpaceBetween = styled(Box)`
@@ -48,7 +59,7 @@ const Row = styled(Box)`
 `;
 
 const MyButton = styled(Button)`
-	padding: 5px 10px;
+	padding: 0px 10px;
 	min-width: 0px;
 `;
 
@@ -56,4 +67,44 @@ const MyAppBar = styled(AppBar)`
 	background-color: #fff;
 	box-shadow: 0px 0px 0px 0px;
 	padding: 10px 5px;
+`;
+
+const MenuIcon = styled(Menu)`
+	@media screen and (min-width: 500px) {
+		width: 32px;
+		height: 32px;
+	}
+`;
+
+const SearchIcon = styled(Search)`
+	@media screen and (min-width: 500px) {
+		width: 32px;
+		height: 32px;
+	}
+`;
+
+const FavoriteBorderIcon = styled(FavoriteBorder)`
+	@media screen and (min-width: 500px) {
+		width: 32px;
+		height: 32px;
+	}
+`;
+
+const ShoppingBasketOutlinedIcon = styled(ShoppingBasketOutlined)`
+	@media screen and (min-width: 500px) {
+		width: 32px;
+		height: 32px;
+	}
+`;
+
+const MyLink = styled(Link)`
+	text-decoration: none;
+
+	&:focus,
+	&:hover,
+	&:visited,
+	&:link,
+	&:active {
+		text-decoration: none;
+	}
 `;
