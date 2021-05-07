@@ -37,12 +37,9 @@ export default function Appbar() {
 }
 
 const Text = styled(Typography)`
-	font-size: 30px;
+	font-size: 25px;
 	color: black;
 	word-break: keep-all;
-	@media screen and (max-width: 500px) {
-		font-size: 23px;
-	}
 `;
 
 const SpaceBetween = styled(Box)`
@@ -67,6 +64,7 @@ const MyAppBar = styled(AppBar)`
 	background-color: #fff;
 	box-shadow: 0px 0px 0px 0px;
 	padding: 10px 5px;
+	min-width: 390px;
 `;
 
 const MenuIcon = styled(Menu)`
