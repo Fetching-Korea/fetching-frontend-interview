@@ -3,7 +3,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Http from "../common/Http";
 
 const initialState = {
-	category: [],
+	category: [{ children: [] }, { children: [] }],
+	gender: [],
+	selectCategory: { title: "전체", arr: [] },
+	subTitle: "",
 };
 
 export const getCategory = createAsyncThunk("GET_CATEGORY", async () => {
@@ -15,10 +18,22 @@ export const getCategory = createAsyncThunk("GET_CATEGORY", async () => {
 export const categoryReducer = createSlice({
 	name: "category",
 	initialState,
-	reducers: {},
+	reducers: {
+		addGender: (state, action) => {
+			state.gender = action.payload;
+		},
+		selectCategory: (state, action) => {
+			state.selectCategory = action.payload;
+		},
+		subTitle: (state, action) => {
+			state.subTitle = action.payload;
+		},
+	},
 	extraReducers: {
 		[getCategory.fulfilled]: (state, action) => {
 			state.category = action.payload;
 		},
 	},
 });
+
+export const { addGender, selectCategory, subTitle } = categoryReducer.actions;

@@ -12,7 +12,7 @@ export default function Appbar() {
 					<MyButton>
 						<MenuIcon />
 					</MyButton>
-					<MyLink to="/search">
+					<MyLink to="/brands">
 						<MyButton>
 							<SearchIcon />
 						</MyButton>
@@ -20,7 +20,7 @@ export default function Appbar() {
 				</Row>
 				<MyLink to="/">
 					<MyButton>
-						<Text>반응형웹</Text>
+						<Text>FETCHING</Text>
 					</MyButton>
 				</MyLink>
 				<Row style={{ marginLeft: "50px" }}>

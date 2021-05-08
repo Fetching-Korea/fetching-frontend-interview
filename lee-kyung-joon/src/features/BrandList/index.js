@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Typography, Button, Box, CardMedia } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 
 import { getBrand } from "../slice/brandSlice";
 
@@ -37,7 +38,7 @@ export default function BrandList() {
 		"Z",
 	];
 
-	const [select, setSelect] = useState("A");
+	const select = useRef("A");
 
 	useEffect(() => {
 		dispatch(getBrand());
@@ -55,8 +56,11 @@ export default function BrandList() {
 								disableElevation={true}
 								disableFocusRipple={true}
 								disableRipple={true}
+								onClick={() => {
+									select.current = e;
+								}}
 							>
-								<Alphabet basic={select === e ? "black" : "#adb5bd"}>{e}</Alphabet>
+								<Alphabet basic={select.current === e ? "black" : "#adb5bd"}>{e}</Alphabet>
 							</MyButton>
 						);
 					})}
@@ -99,6 +103,7 @@ const List = styled.div`
 	max-height: calc(100vh - 107px);
 	padding: 0px 0px 0px 10px;
 	min-width: 370px;
+	scroll-behavior: smooth;
 `;
 
 const Root = styled.div`
