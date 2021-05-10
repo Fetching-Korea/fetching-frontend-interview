@@ -7,8 +7,13 @@ import BrandListPage from 'pages/BrandListPage';
 import NotFound from 'pages/NotFound';
 // Containers
 import Modal from 'containers/common/Modal';
+// hooks
+import useInit from 'lib/hooks/useInit';
 
 const App = () => {
+  /* 어플리케이션 초기 구동에 필요한 요청 실행 */
+  useInit();
+
   return (
     <>
       <Switch>

@@ -11,6 +11,7 @@ const Content = styled.div`
   position: relative;
   width: 90%;
   font-weight: 400;
+  line-height: 2rem;
   margin-left: 5vw;
   color: #eee;
   word-break: keep-all;

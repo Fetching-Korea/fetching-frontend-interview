@@ -9,6 +9,6 @@ export { ReactComponent as CloseIcon } from './close.svg';
 export { ReactComponent as BackIcon } from './back.svg';
 export { ReactComponent as SortIcon } from './sort.svg';
 export { ReactComponent as FilterIcon } from './filter.svg';
-export { ReactComponent as HeartIcon } from './hear.svg';
+export { ReactComponent as HeartIcon } from './heart.svg';
 export { ReactComponent as BagIcon } from './bag.svg';
 export { ReactComponent as HangerIcon } from './hanger.svg';

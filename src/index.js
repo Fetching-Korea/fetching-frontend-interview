@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -9,15 +8,13 @@ import { HelmetProvider } from 'react-helmet-async';
 import store from 'modules';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root'),
 );
 

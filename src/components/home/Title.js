@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 // lib'
+import * as styles from 'lib/styles/styles';
 import media from 'lib/styles/media';
 
 const Title = ({ children }) => {
@@ -15,9 +16,15 @@ const Content = styled.div`
   margin: 0 0 1rem 5vw;
   color: white;
   border-bottom: 0.5px solid white;
+  transition: width 0.3s ${styles.transition} ease;
 
   ${media.small} {
+    font-size: 1.8rem;
     padding: 15vh 0 0.5rem 0;
+  }
+
+  ${media.xsmall} {
+    width: 90vw;
   }
 `;
 

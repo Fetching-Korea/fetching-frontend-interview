@@ -11,6 +11,8 @@
   8:   40%
 */
 const palette = {
+  white: '#ffffff',
+  black: '#333333',
   /* gray */
   gray0: '#f7f6f3',
   gray1: '#eeeceb',
@@ -73,4 +75,4 @@ const palette = {
   blue8: '#001226',
 };
 
-export default palette
+export default palette;

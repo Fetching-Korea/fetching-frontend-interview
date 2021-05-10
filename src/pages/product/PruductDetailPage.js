@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 
 const ProductDetailPage = ({ match }) => {
   const productId = match.params['id'];
+  console.log(productId);
 
   return (
     <>
