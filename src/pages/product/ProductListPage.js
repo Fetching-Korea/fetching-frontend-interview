@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 // containers
-import Header from 'containers/Header';
+import Header from 'containers/header';
 // components
 import MainLayout from 'components/layout/MainLayout';
 
@@ -12,7 +12,7 @@ const ProductListPage = () => {
       </Helmet>
 
       <MainLayout>
-        <Header />
+        <Header isShowCategory={true} />
       </MainLayout>
     </>
   );

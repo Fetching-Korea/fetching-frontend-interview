@@ -83,13 +83,13 @@ function product(state = initialState, action) {
       });
 
     /* Clear productList */
-    case clearProductList:
+    case CLEAR_PRODUCT_LIST:
       return produce(state, draft => {
         draft.productList = [];
       });
 
     /* Set product options */
-    case setProductOptions:
+    case SET_PRODUCT_OPTIONS:
       return produce(state, draft => {
         draft.options = { ...state.options, ...action.payload };
       });

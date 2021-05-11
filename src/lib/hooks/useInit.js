@@ -26,18 +26,15 @@ const useInit = () => {
   useEffect(() => {
     if (!categoryList) return;
 
-    const categoryId_depth_0 = categoryList[0]?.id;
-    const categoryId_depth_1 = categoryList[0]?.children[0]?.id;
-
-    if (
-      (categoryId_depth_0 !== 0 && !categoryId_depth_0) ||
-      (categoryId_depth_1 !== 0 && !categoryId_depth_1)
-    )
+    const id_depth_0 = categoryList[0]?.id;
+    const id_depth_1 = categoryList[0]?.children[0]?.id;
+    if ((id_depth_0 !== 0 && !id_depth_0) || (id_depth_1 !== 0 && !id_depth_1)) {
       return;
+    }
 
     dispatch(
       setProductOptions({
-        categoryList: [categoryId_depth_0, categoryId_depth_1],
+        categoryIdList: [id_depth_0, id_depth_1],
       }),
     );
     dispatch(setIsReady(true));

@@ -1,4 +1,8 @@
 import { Helmet } from 'react-helmet-async';
+// containers
+import Header from 'containers/header';
+// components
+import MainLayout from 'components/layout/MainLayout';
 
 const BrandListPage = () => {
   return (
@@ -7,7 +11,9 @@ const BrandListPage = () => {
         <title>페칭 - 1등 명품 쇼핑 서비스</title>
       </Helmet>
 
-      <h1>브랜드 리스트 페이지</h1>
+      <MainLayout>
+        <Header isShowCategory={true} />
+      </MainLayout>
     </>
   );
 };

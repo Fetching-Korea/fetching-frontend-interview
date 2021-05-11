@@ -1,11 +1,18 @@
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 // lib
 import { transition, noselect } from 'lib/styles/styles';
+import media from 'lib/styles/media';
 import palette from 'lib/styles/palette';
 
 function NoPage() {
+  const history = useHistory();
+
+  const onGoBack = () => {
+    history.goBack();
+  };
+
   return (
     <>
       <Helmet>
@@ -13,9 +20,7 @@ function NoPage() {
       </Helmet>
 
       <Title>해당 페이지는 출장 중이에요!</Title>
-      <Link to="/">
-        <Btn>Back</Btn>
-      </Link>
+      <Btn onClick={onGoBack}>돌아가기</Btn>
     </>
   );
 }
@@ -24,10 +29,15 @@ const Title = styled.div`
   position: relative;
   width: 100%;
   margin-top: 40vh;
+  margin-bottom: 2rem;
   font-size: 2.4rem;
   color: #444;
   font-weight: 600;
   text-align: center;
+
+  ${media.small} {
+    font-size: 1.4rem;
+  }
 `;
 
 const Btn = styled.button`
