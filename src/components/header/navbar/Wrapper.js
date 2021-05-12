@@ -2,13 +2,15 @@ import styled from 'styled-components';
 // lib
 import media from 'lib/styles/media';
 
-const CategoryBtnWrapper = styled.ul`
-  display: flex;
+const Wrapper = styled.div`
+  display: none;
+  width: 94vw;
+  height: 32px;
   align-items: center;
 
   ${media.small} {
-    display: none;
+    display: flex;
   }
 `;
 
-export default CategoryBtnWrapper;
+export default Wrapper;

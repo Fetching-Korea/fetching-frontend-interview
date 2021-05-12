@@ -8,10 +8,16 @@ const useBasePath = () => {
   const location = useLocation();
   const params = useParams();
 
-  return Object.values(params).reduce(
+  const output = Object.values(params).reduce(
     (path, param) => path.replace('/' + param, ''),
     location.pathname,
   );
+
+  if (output[output.length - 1] === '/') {
+    return output.slice(0, output.length - 1);
+  } else {
+    return output;
+  }
 };
 
 export default useBasePath;

@@ -6,8 +6,9 @@ import TopWrapper from 'components/header/categorybar/TopWrapper';
 import GenderBtnWrapper from 'components/header/categorybar/GenderBtnWrapper';
 import CategoryBtnWrapper from 'components/header/categorybar/CategoryBtnWrapper';
 import TopLink from 'components/header/categorybar/TopLink';
-import GenderBtn from 'components/header/categorybar/GenderBtn';
-import CategoryBtn from 'components/header/categorybar/CategoryBtn';
+import GenderBtn from 'components/header/categorybar/GenderLink';
+import CategoryBtn from 'components/header/categorybar/CategoryLink';
+import SubCategoryLink from 'components/header/categorybar/SubCategoryLink';
 import VerticalBar from 'components/header/categorybar/VerticalBar';
 // modules
 import { useEffect } from 'react';
@@ -54,6 +55,13 @@ const CategoryBar = () => {
       to={getCategoryPath(category.id, 1)}
       message={category.name}
       isChecked={categoryIdList.length > 1 && category.id === categoryIdList[1]}
+      subCategoryList={category.children.map(subCategory => (
+        <SubCategoryLink
+          key={subCategory.id}
+          to={getCategoryPath(subCategory.id, 2)}
+          message={subCategory.name}
+        />
+      ))}
     />
   ));
 
@@ -87,7 +95,6 @@ const CategoryBar = () => {
           message="전체"
           isChecked={categoryIdList.length < 2}
         />
-
         {CategoryBtnList}
       </CategoryBtnWrapper>
     </Wrapper>

@@ -1,14 +1,27 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+// components
+import SubCategoryWrapper from 'components/header/categorybar/SubCategoryWrapper';
 // styles
 import * as styles from 'lib/styles/styles';
 import palette from 'lib/styles/palette';
 import media from 'lib/styles/media';
 
-const CategoryBtn = ({ to, message, isChecked }) => {
+const CategoryLink = ({ to, message, isChecked, subCategoryList }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onOpen = () => setIsOpen(true);
+  const onClose = () => setIsOpen(false);
+
   return (
-    <BtnContainer isChecked={isChecked}>
+    <BtnContainer onMouseEnter={onOpen} onMouseLeave={onClose} isChecked={isChecked}>
       <Btn to={to}>{message}</Btn>
+      {isOpen && subCategoryList && (
+        <>
+          <SubCategoryWrapper>{subCategoryList}</SubCategoryWrapper>
+        </>
+      )}
     </BtnContainer>
   );
 };
@@ -37,4 +50,4 @@ const Btn = styled(Link)`
   transition: 0.2s ${styles.transition} ease-in-out;
 `;
 
-export default CategoryBtn;
+export default CategoryLink;

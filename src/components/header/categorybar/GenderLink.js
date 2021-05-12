@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as styles from 'lib/styles/styles';
 import palette from 'lib/styles/palette';
 
-const GenderBtn = ({ to, message, isChecked }) => {
+const GenderLink = ({ to, message, isChecked }) => {
   return (
     <BtnContainer isChecked={isChecked}>
       <Btn to={to}>{message}</Btn>
@@ -29,4 +29,4 @@ const Btn = styled(Link)`
   transition: 0.2s ${styles.transition};
 `;
 
-export default GenderBtn;
+export default GenderLink;
