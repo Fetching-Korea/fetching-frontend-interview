@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // modules
-import { setProductOptions } from 'modules/product';
 import { getCategoryList, getBrandList } from 'modules/catalog';
 import { setIsReady } from 'modules/app';
 
@@ -12,34 +11,16 @@ import { setIsReady } from 'modules/app';
  */
 const useInit = () => {
   const dispatch = useDispatch();
-  const categoryList = useSelector(state => state.catalog.categoryList);
 
   const [isFullfilled, setIsFullfilled] = useState(false);
 
   /** UI에 필요한 Category/Brand API 호출 */
   useEffect(() => {
-    dispatch(getCategoryList());
-    dispatch(getBrandList());
-  }, [dispatch]);
-
-  /** 초기 카테고리 선택 (최소 Depth 0 ~ 1) */
-  useEffect(() => {
-    if (!categoryList) return;
-
-    const id_depth_0 = categoryList[0]?.id;
-    const id_depth_1 = categoryList[0]?.children[0]?.id;
-    if ((id_depth_0 !== 0 && !id_depth_0) || (id_depth_1 !== 0 && !id_depth_1)) {
-      return;
-    }
-
-    dispatch(
-      setProductOptions({
-        categoryIdList: [id_depth_0, id_depth_1],
-      }),
-    );
-    dispatch(setIsReady(true));
-    setIsFullfilled(true);
-  }, [dispatch, setIsFullfilled, categoryList]);
+    Promise.all([dispatch(getCategoryList()), dispatch(getBrandList())]).then(() => {
+      dispatch(setIsReady(true));
+      setIsFullfilled(true);
+    });
+  }, [dispatch, setIsFullfilled]);
 
   return isFullfilled;
 };

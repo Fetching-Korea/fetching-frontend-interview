@@ -3,8 +3,12 @@ import { Helmet } from 'react-helmet-async';
 import Header from 'containers/header';
 // components
 import MainLayout from 'components/layout/MainLayout';
+// hooks
+import useCategory from 'lib/hooks/productList/useCategory';
 
 const ProductListPage = () => {
+  useCategory();
+
   return (
     <>
       <Helmet>

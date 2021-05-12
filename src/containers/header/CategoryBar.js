@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // components
 import Wrapper from 'components/header/categorybar/Wrapper';
 import TopWrapper from 'components/header/categorybar/TopWrapper';
@@ -10,50 +10,50 @@ import GenderBtn from 'components/header/categorybar/GenderBtn';
 import CategoryBtn from 'components/header/categorybar/CategoryBtn';
 import VerticalBar from 'components/header/categorybar/VerticalBar';
 // modules
-import { setProductOptions } from 'modules/product';
 import { useEffect } from 'react';
+// hooks
+import useBasePath from 'lib/hooks/useBasePath';
 
 const CategoryBar = () => {
-  const dispatch = useDispatch();
   const categoryList = useSelector(state => state.catalog.categoryList);
   const categoryIdList = useSelector(state => state.product.options.categoryIdList);
 
   const [subCategoryList, setSubCategoryList] = useState([]);
 
-  /** 카테고리 클릭 함수 */
-  const onClickCategory = (id, depth) => {
-    const id_depth_1 = categoryList[0]?.children[0]?.id;
-    if (id_depth_1 !== 0 && !id_depth_1) return;
+  const basePath = useBasePath();
 
-    let changedList = [...categoryIdList];
-    if (id) {
-      changedList[depth] = id;
-      changedList = changedList.slice(0, depth + 1);
+  /** 해당 카테고리 경로 반환 */
+  const getCategoryPath = (categoryId, depth) => {
+    if (depth === 0) {
+      return `${basePath}/${categoryId}`;
     } else {
+      let changedList = [...categoryIdList];
       changedList = changedList.slice(0, depth);
+
+      if (categoryId === null) {
+        return `${basePath}/${changedList}`;
+      } else {
+        changedList.push(categoryId);
+        return `${basePath}/${changedList.join('/')}`;
+      }
     }
-    dispatch(
-      setProductOptions({
-        categoryIdList: changedList,
-      }),
-    );
   };
 
   const GenderBtnList = categoryList.map(category => (
     <GenderBtn
       key={category.id}
-      isChecked={category.id === categoryIdList[0]}
-      onClick={() => onClickCategory(category.id, 0)}
+      to={getCategoryPath(category.id, 0)}
       message={category.name}
+      isChecked={category.id === categoryIdList[0]}
     />
   ));
 
   const CategoryBtnList = subCategoryList.map(category => (
     <CategoryBtn
       key={category.id}
-      isChecked={categoryIdList.length > 1 && category.id === categoryIdList[1]}
-      onClick={() => onClickCategory(category.id, 1)}
+      to={getCategoryPath(category.id, 1)}
       message={category.name}
+      isChecked={categoryIdList.length > 1 && category.id === categoryIdList[1]}
     />
   ));
 
@@ -71,19 +71,23 @@ const CategoryBar = () => {
     <Wrapper>
       <TopWrapper>
         <GenderBtnWrapper>{GenderBtnList}</GenderBtnWrapper>
+
         <VerticalBar />
+
         <GenderBtnWrapper>
           <TopLink to={'/brand'} message="브랜드" />
           <TopLink to={'/sale'} message="SALE" isHighlight={true} />
           <TopLink to={'/faq'} message="고객지원" />
         </GenderBtnWrapper>
       </TopWrapper>
+
       <CategoryBtnWrapper>
         <CategoryBtn
-          isChecked={categoryIdList.length < 2}
-          onClick={() => onClickCategory(null, 1)}
+          to={getCategoryPath(null, 1)}
           message="전체"
+          isChecked={categoryIdList.length < 2}
         />
+
         {CategoryBtnList}
       </CategoryBtnWrapper>
     </Wrapper>

@@ -7,7 +7,7 @@ const VerticalBar = styled.div`
   height: 16px;
   background-color: ${palette.gray1};
   margin-top: 1px;
-  margin-right: 20px;
+  margin-right: 12px;
 `;
 
 export default VerticalBar;

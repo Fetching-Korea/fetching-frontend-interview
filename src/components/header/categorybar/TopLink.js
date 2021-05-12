@@ -13,6 +13,10 @@ const TopLink = ({ to, message, isHighlight = false }) => {
 };
 
 const Wrapper = styled.li`
+  &:nth-child(1) > a {
+    padding: 4px 12px 4px 0;
+  }
+
   & > a {
     color: ${({ isHighlight }) => (isHighlight ? palette.red4 : palette.black)};
   }
@@ -21,17 +25,9 @@ const Wrapper = styled.li`
 const Btn = styled(Link)`
   display: block;
   font-size: 14px;
-  padding: 4px 20px;
+  padding: 4px 12px;
   transition: 0.2s ${styles.transition};
   transform: translateY(0px);
-
-  &:nth-child(1) {
-    padding: 4px 20px 4px 0;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-  }
 `;
 
 export default TopLink;

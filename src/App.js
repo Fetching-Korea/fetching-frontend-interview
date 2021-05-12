@@ -20,8 +20,17 @@ const App = () => {
     <div className={isMouseDown ? 'mousedown' : ''}>
       <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="/productList" component={ProductListPage} exact />
-        <Route path="/productList/:id" component={PruductDetailPage} exact />
+        <Route
+          path={[
+            '/productList',
+            '/productList/:category0',
+            '/productList/:category0/:category1',
+            '/productList/:category0/:category1/:category2',
+          ]}
+          component={ProductListPage}
+          exact
+        />
+        <Route path="/product/:id" component={PruductDetailPage} exact />
         <Route path="/brands" component={BrandListPage} exact />
         <Route path="*" component={NotFound} status={404} />
       </Switch>

@@ -1,32 +1,32 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 // styles
 import * as styles from 'lib/styles/styles';
 import palette from 'lib/styles/palette';
 
-const GenderBtn = ({ isChecked, onClick, message }) => {
+const GenderBtn = ({ to, message, isChecked }) => {
   return (
-    <li>
-      <Btn isChecked={isChecked} onClick={onClick}>
-        {message}
-      </Btn>
-    </li>
+    <BtnContainer isChecked={isChecked}>
+      <Btn to={to}>{message}</Btn>
+    </BtnContainer>
   );
 };
 
-const Btn = styled.button`
+const BtnContainer = styled.li`
+  & > a {
+    color: ${({ isChecked }) => (isChecked ? palette.orange4 : palette.black)};
+  }
+
+  &:nth-child(1) > a {
+    padding: 4px 12px 4px 0;
+  }
+`;
+
+const Btn = styled(Link)`
+  display: block;
   font-size: 14px;
-  height: 32px;
-  padding: 4px 24px;
+  padding: 4px 12px;
   transition: 0.2s ${styles.transition};
-  color: ${({ isChecked }) => (isChecked ? palette.orange4 : palette.black)};
-
-  &:nth-child(1) {
-    padding: 4px 24px 4px 0;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-  }
 `;
 
 export default GenderBtn;
