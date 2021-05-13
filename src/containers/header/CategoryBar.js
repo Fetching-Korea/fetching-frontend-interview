@@ -1,17 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 // components
 import Wrapper from 'components/header/categorybar/Wrapper';
 import TopWrapper from 'components/header/categorybar/TopWrapper';
-import GenderBtnWrapper from 'components/header/categorybar/GenderBtnWrapper';
-import CategoryBtnWrapper from 'components/header/categorybar/CategoryBtnWrapper';
+import GenderLinkWrapper from 'components/header/categorybar/GenderLinkWrapper';
+import CategoryLinkWrapper from 'components/header/categorybar/CategoryLinkWrapper';
 import TopLink from 'components/header/categorybar/TopLink';
-import GenderBtn from 'components/header/categorybar/GenderLink';
-import CategoryBtn from 'components/header/categorybar/CategoryLink';
+import GenderLink from 'components/header/categorybar/GenderLink';
+import CategoryLink from 'components/header/categorybar/CategoryLink';
 import SubCategoryLink from 'components/header/categorybar/SubCategoryLink';
 import VerticalBar from 'components/header/categorybar/VerticalBar';
-// modules
-import { useEffect } from 'react';
 // hooks
 import useBasePath from 'lib/hooks/useBasePath';
 
@@ -24,48 +22,51 @@ const CategoryBar = () => {
   const basePath = useBasePath();
 
   /** 해당 카테고리 경로 반환 */
-  const getCategoryPath = (categoryId, depth) => {
-    if (depth === 0) {
-      return `${basePath}/${categoryId}`;
-    } else {
-      let changedList = [...categoryIdList];
-      changedList = changedList.slice(0, depth);
+  const getCategoryPath = (category, depth) => {
+    if (depth === 0) return `${basePath}/${category.id}`;
 
-      if (categoryId === null) {
-        return `${basePath}/${changedList}`;
-      } else {
-        changedList.push(categoryId);
-        return `${basePath}/${changedList.join('/')}`;
-      }
+    let changedList = [...categoryIdList];
+    changedList = changedList.slice(0, depth - 1);
+
+    if (category) {
+      changedList.push(category.parent);
+      changedList.push(category.id);
     }
+
+    return `${basePath}/${changedList.join('/')}`;
   };
 
-  const GenderBtnList = categoryList.map(category => (
-    <GenderBtn
+  /** 대분류 링크 리스트 */
+  const GenderLinkList = categoryList.map(category => (
+    <GenderLink
       key={category.id}
-      to={getCategoryPath(category.id, 0)}
+      to={getCategoryPath(category, 0)}
       message={category.name}
       isChecked={category.id === categoryIdList[0]}
     />
   ));
 
-  const CategoryBtnList = subCategoryList.map(category => (
-    <CategoryBtn
+  /** 중분류 링크 리스트 */
+  const CategoryLinkList = subCategoryList.map(category => (
+    <CategoryLink
       key={category.id}
-      to={getCategoryPath(category.id, 1)}
+      to={getCategoryPath(category, 1)}
       message={category.name}
       isChecked={categoryIdList.length > 1 && category.id === categoryIdList[1]}
-      subCategoryList={category.children.map(subCategory => (
-        <SubCategoryLink
-          key={subCategory.id}
-          to={getCategoryPath(subCategory.id, 2)}
-          message={subCategory.name}
-        />
-      ))}
+      subCategoryList={
+        /** 소분류 링크 리스트 */
+        category.children.map(subCategory => (
+          <SubCategoryLink
+            key={subCategory.id}
+            to={getCategoryPath(subCategory, 2)}
+            message={subCategory.name}
+          />
+        ))
+      }
     />
   ));
 
-  /** 카테고리 Depth 1 리스트 설정 */
+  /** 카테고리 중분류 리스트 설정 */
   useEffect(() => {
     if (categoryList.length === 0 || categoryIdList.length === 0) return;
 
@@ -78,25 +79,25 @@ const CategoryBar = () => {
   return (
     <Wrapper>
       <TopWrapper>
-        <GenderBtnWrapper>{GenderBtnList}</GenderBtnWrapper>
+        <GenderLinkWrapper>{GenderLinkList}</GenderLinkWrapper>
 
         <VerticalBar />
 
-        <GenderBtnWrapper>
+        <GenderLinkWrapper>
           <TopLink to={'/brand'} message="브랜드" />
           <TopLink to={'/sale'} message="SALE" isHighlight={true} />
           <TopLink to={'/faq'} message="고객지원" />
-        </GenderBtnWrapper>
+        </GenderLinkWrapper>
       </TopWrapper>
 
-      <CategoryBtnWrapper>
-        <CategoryBtn
+      <CategoryLinkWrapper>
+        <CategoryLink
           to={getCategoryPath(null, 1)}
           message="전체"
           isChecked={categoryIdList.length < 2}
         />
-        {CategoryBtnList}
-      </CategoryBtnWrapper>
+        {CategoryLinkList}
+      </CategoryLinkWrapper>
     </Wrapper>
   );
 };

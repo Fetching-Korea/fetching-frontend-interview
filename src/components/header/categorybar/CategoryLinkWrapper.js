@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // lib
 import media from 'lib/styles/media';
 
-const CategoryBtnWrapper = styled.ul`
+const CategoryLinkWrapper = styled.ul`
   display: flex;
   align-items: center;
 
@@ -11,4 +11,4 @@ const CategoryBtnWrapper = styled.ul`
   }
 `;
 
-export default CategoryBtnWrapper;
+export default CategoryLinkWrapper;

@@ -41,8 +41,13 @@ const NavBar = () => {
 
   return (
     <Wrapper onClick={onClick}>
-      {!selectedCategories && <CategoryInfo>전체</CategoryInfo>}
-      {selectedCategories && <>{SelectedCategories}</>}
+      {SelectedCategories}
+      {selectedCategories.length === 1 && (
+        <>
+          <RightIcon />
+          <CategoryInfo message="전체" />
+        </>
+      )}
     </Wrapper>
   );
 };
