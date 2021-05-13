@@ -3,16 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 // components
 import ProductListWrapper from 'components/productList/ProductListWrapper';
 // modules
-import { getProductList } from 'modules/product';
+import { clearProductList, getProductList } from 'modules/product';
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const categoryIdList = useSelector(state => state.product.options.categoryIdList);
+  const productList = useSelector(state => state.product.productList);
 
   /** 상품 호출 */
   useEffect(() => {
     if (categoryIdList.length === 0) return;
 
+    dispatch(clearProductList());
     dispatch(getProductList());
   }, [dispatch, categoryIdList]);
 

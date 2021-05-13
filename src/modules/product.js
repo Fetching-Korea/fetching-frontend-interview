@@ -24,9 +24,14 @@ export const getProductList = () => (dispatch, getState) => {
       true,
     )
     .then(res => {
-      dispatch(setProductInfo({ count: res.count, pageNum: res.page }));
+      dispatch(
+        setProductInfo({
+          count: res.count ? res.count : 0,
+          pageNum: res.page ? res.page : 0,
+        }),
+      );
       dispatch(setBookmark(res.bookmark));
-      dispatch(pushProductList(res.results));
+      dispatch(pushProductList(...res.results));
     });
 };
 

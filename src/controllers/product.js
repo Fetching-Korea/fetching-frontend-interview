@@ -19,14 +19,13 @@ export const getItems = (
   sort,
   needCount,
 ) => {
-  const sendData = {
-    bookmark: bookmark ? bookmark : {},
-    categoryId,
-    minimumPrice: minimumPrice ? minimumPrice : 0,
-    maximumPrice: maximumPrice ? maximumPrice : 999_999_999_999,
-    sort,
-    needCount,
-  };
+  const sendData = new FormData();
+  sendData.append('bookmark', bookmark ? bookmark : {});
+  sendData.append('minimumPrice', minimumPrice ? minimumPrice : 0);
+  sendData.append('maximumPrice', maximumPrice ? maximumPrice : 999_999_999_999);
+  sendData.append('sort', sort);
+  sendData.append('needCount', needCount);
+
   return Fetch('/api/items/search', 'POST', sendData).then(res => {
     if (res) return res;
     else return Promise.reject(res);

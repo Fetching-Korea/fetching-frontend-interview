@@ -4,13 +4,15 @@ import CheckboxWrapper from 'components/productList/option/brand/CheckboxWrapper
 import CheckboxBtn from 'components/productList/option/brand/CheckboxBtn';
 import OptionTitle from 'components/productList/option/OptionTitle';
 
-const BrandOption = ({ brandList, selectedBrandIdList, onClick }) => {
+const BrandOption = ({ brandList, selectedBrandList, onClick }) => {
+  const selectedBrandIdList = selectedBrandList.map(brand => brand.id);
+
   const BrandList = brandList.map(brand => (
     <CheckboxBtn
       key={brand.name}
       message={brand.name}
       isSelected={~selectedBrandIdList.indexOf(brand.id)}
-      onClick={() => onClick(brand.id)}
+      onClick={() => onClick(brand)}
     ></CheckboxBtn>
   ));
 
