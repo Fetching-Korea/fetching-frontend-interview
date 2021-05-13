@@ -42,6 +42,7 @@ const TopCategory = () => {
       key={category.name}
       to={getCategoryPath(category, 2)}
       message={category.name}
+      isChecked={categoryIdList.length >= 3 && category.id === categoryIdList[2]}
     />
   ));
 

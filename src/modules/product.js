@@ -8,8 +8,6 @@ import * as productAPI from 'controllers/product';
 export const getProductList = () => (dispatch, getState) => {
   const state = getState().product;
 
-  if (state.productList.length > 0) return;
-
   const categoryId =
     state.options.categoryIdList.length > 0
       ? state.options.categoryIdList[state.options.categoryIdList.length - 1]

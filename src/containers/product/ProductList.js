@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // components
-import ProductListWrapper from 'components/product/ProductListWrapper';
+import ProductListWrapper from 'components/productList/ProductListWrapper';
 // modules
 import { getProductList } from 'modules/product';
 

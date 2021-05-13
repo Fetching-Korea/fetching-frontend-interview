@@ -7,6 +7,8 @@ import NavBar from 'containers/header/NavBar';
 import Wrapper from 'components/header/Wrapper';
 // hooks
 import useScrollDirection from 'lib/hooks/useScrollDirection';
+// styles
+import { mediaValue } from 'lib/styles/media';
 
 const Header = ({ isShowCategory }) => {
   const ref = useRef(null);
@@ -14,6 +16,8 @@ const Header = ({ isShowCategory }) => {
 
   const headerEvent = direction => {
     if (!ref.current) return;
+
+    if (window.innerWidth > mediaValue.small) return;
 
     if (direction === 'DOWN') {
       ref.current.style.top = '-48px';

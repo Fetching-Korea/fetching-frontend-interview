@@ -8,10 +8,12 @@ import palette from 'lib/styles/palette';
 
 const IconBtn = ({ count, to }) => {
   return (
-    <Btn to={to}>
-      <BagIcon />
-      <Count>{count}</Count>
-    </Btn>
+    <li>
+      <Btn to={to}>
+        <BagIcon />
+        <Count>{count}</Count>
+      </Btn>
+    </li>
   );
 };
 

@@ -5,9 +5,9 @@ import * as styles from 'lib/styles/styles';
 import palette from 'lib/styles/palette';
 import { mediaQuery } from 'lib/styles/media';
 
-const CategoryLink = ({ to, message }) => {
+const CategoryLink = ({ to, message, isChecked }) => {
   return (
-    <Container>
+    <Container isChecked={isChecked}>
       <CategoryBtn to={to}>{message}</CategoryBtn>
     </Container>
   );
@@ -18,6 +18,14 @@ const Container = styled.li`
   min-width: 140px;
   max-width: 12.5%;
   flex: 1;
+
+  & > a {
+    color: ${({ isChecked }) => (isChecked ? palette.orange4 : palette.gray6)};
+
+    &:hover {
+      color: ${({ isChecked }) => (isChecked ? palette.orange4 : palette.black)};
+    }
+  }
 
   ${mediaQuery(1191)} {
     max-width: 14.28%;
@@ -39,13 +47,11 @@ const CategoryBtn = styled(Link)`
   height: 40px;
   line-height: 40px;
   text-align: center;
-  color: ${palette.black};
   font-size: 12px;
-  transition: 0.1s ${styles.transition} ease;
+  transition: 0.1s ${styles.transition};
 
   &:hover {
     transform: scale(1.1);
-    color: black;
   }
 `;
 

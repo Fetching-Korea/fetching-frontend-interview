@@ -17,7 +17,7 @@ const AlphabetBrand = ({ alphabet, brandList }) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   margin-top: 4rem;
   margin-bottom: 1rem;
 `;

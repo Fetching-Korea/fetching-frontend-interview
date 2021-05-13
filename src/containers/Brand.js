@@ -7,6 +7,8 @@ import BrandWrapper from 'components/brand/BrandWrapper';
 import AlphabetBrand from 'components/brand/AlphabetBrand';
 // hooks
 import useScrollDirection from 'lib/hooks/useScrollDirection';
+// styles
+import { mediaValue } from 'lib/styles/media';
 
 const Brand = () => {
   const brandList = useSelector(state => state.catalog.brandList);
@@ -18,6 +20,11 @@ const Brand = () => {
 
   const headerEvent = direction => {
     if (!headerRef.current) return;
+
+    if (window.innerWidth > mediaValue.small) {
+      headerRef.current.removeAttribute('style');
+      return;
+    }
 
     if (direction === 'DOWN') {
       headerRef.current.style.top = '0px';

@@ -6,7 +6,7 @@ import palette from 'lib/styles/palette';
 
 const AlphabetWrapper = styled.ul`
   position: sticky;
-  top: 38px;
+  top: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -16,7 +16,6 @@ const AlphabetWrapper = styled.ul`
   background-color: white;
   border-bottom: 1px solid ${palette.gray2};
   padding: 20px 0;
-  /* margin-top: 10px; */
   transition: top 0.4s ${styles.transition} ease-in-out;
 
   ${media.medium} {
