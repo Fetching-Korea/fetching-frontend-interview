@@ -24,7 +24,7 @@ const Fetch = (url, method, sendData, callback, failed) => {
       headers,
     });
   } else {
-    Object.assing(request, {
+    Object.assign(request, {
       method,
       headers: isFormData
         ? headers

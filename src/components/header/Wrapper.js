@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 // lib
+import * as styles from 'lib/styles/styles';
 import palette from 'lib/styles/palette';
+import media from 'lib/styles/media';
 
 const Wrapper = styled.header`
   width: 100%;
@@ -9,6 +11,12 @@ const Wrapper = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: 0.4s ${styles.transition} ease-in-out;
+
+  ${media.small} {
+    position: sticky;
+    top: -48px;
+  }
 `;
 
 export default Wrapper;

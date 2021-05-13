@@ -1,15 +1,7 @@
 import styled from 'styled-components';
-// lib
-import media from 'lib/styles/media';
+// components
+import LimitWidthLayout from 'components/layout/LimitWidthLayout';
 
-const Wrapper = styled.div`
-  width: 100%;
-  max-width: 1140px;
-
-  ${media.medium} {
-    width: 94vw;
-    margin: auto;
-  }
-`;
+const Wrapper = styled(LimitWidthLayout)``;
 
 export default Wrapper;

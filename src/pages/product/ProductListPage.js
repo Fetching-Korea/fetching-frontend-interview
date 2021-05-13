@@ -1,9 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 // containers
 import Header from 'containers/header';
+import Footer from 'containers/Footer';
 import TopCategory from 'containers/product/TopCategory';
+import ProductList from 'containers/product/ProductList';
 // components
-import MainLayout from 'components/layout/MainLayout';
+import MainPageLayout from 'components/layout/MainPageLayout';
 // hooks
 import useCategory from 'lib/hooks/productList/useCategory';
 
@@ -16,10 +18,13 @@ const ProductListPage = () => {
         <title>페칭 - 1등 명품 쇼핑 서비스</title>
       </Helmet>
 
-      <MainLayout>
+      <MainPageLayout>
         <Header isShowCategory={true} />
         <TopCategory />
-      </MainLayout>
+        <ProductList />
+
+        <Footer />
+      </MainPageLayout>
     </>
   );
 };
