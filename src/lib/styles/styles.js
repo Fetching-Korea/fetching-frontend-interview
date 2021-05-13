@@ -16,3 +16,20 @@ export const boxShadow = {
   regular: '0px 6px 12px rgba(0, 0, 0, 0.2)',
   bold: '0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 8px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2)',
 };
+
+export const scrollbar = (width = 10) => `
+	&::-webkit-scrollbar {
+		width: ${width}px;
+		background: transparent;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #ddd;
+		border-radius: 10px;
+	}
+	&::-webkit-scrollbar-thumb:hover {
+		background: #ccc;
+	}
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+`;

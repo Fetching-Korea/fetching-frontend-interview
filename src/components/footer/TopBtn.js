@@ -26,7 +26,7 @@ const Btn = styled.button`
   transition: 0.2s ${styles.transition};
 
   &:hover {
-    transform: translateX(-4px);
+    padding: 4px 4px 4px 0;
   }
 
   ${media.small} {

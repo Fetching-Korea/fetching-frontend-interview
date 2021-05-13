@@ -2,8 +2,9 @@ import { Helmet } from 'react-helmet-async';
 // containers
 import Header from 'containers/header';
 import Footer from 'containers/Footer';
-import TopCategory from 'containers/product/TopCategory';
-import ProductList from 'containers/product/ProductList';
+import ProductCategory from 'containers/productList/Category';
+import ProductOption from 'containers/productList/Option';
+import ProductList from 'containers/productList/ProductList';
 // components
 import MainPageLayout from 'components/layout/MainPageLayout';
 // hooks
@@ -20,9 +21,9 @@ const ProductListPage = () => {
 
       <MainPageLayout>
         <Header isShowCategory={true} />
-        <TopCategory />
+        <ProductCategory />
+        <ProductOption />
         <ProductList />
-
         <Footer />
       </MainPageLayout>
     </>

@@ -55,8 +55,8 @@ export const setBookmark = bookmark => ({ type: SET_BOOKMARK, payload: bookmark 
  * @param {number} info.count 상품 목록 총 개수
  * @param {number} info.pageNum 상품 목록 현재 페이지
  * @param {object} options 옵션
- * @param {number[]} options.categoryIdList 카테고리 ID
- * @param {(number | null)} options.brandId 브랜드 ID
+ * @param {number[]} options.categoryIdList 카테고리 ID 리스트
+ * @param {(number | null)} options.brandIdList: 브랜드 ID 리스트
  * @param {(number | null)} options.minimumPrice 최소 가격
  * @param {(number | null)} options.maximumPrice 최대 가격
  * @param {(0 | 1 | 2 | 3)} options.sort 정렬 기준 (0: 최신순, 1: 할인율, 2: 낮은 가격, 3: 높은 가격)
@@ -70,7 +70,7 @@ const initialState = {
   },
   options: {
     categoryIdList: [],
-    brandId: null,
+    brandIdList: [],
     minimumPrice: 0,
     maximumPrice: 999_999_999_999,
     sort: 0,

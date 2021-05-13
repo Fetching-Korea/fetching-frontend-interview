@@ -17,7 +17,7 @@ const DescriptionWrapper = styled.div`
 
   & > h3 {
     font-size: 32px;
-    line-height: 16px;
+    line-height: 18px;
     margin: 0 0 2rem 0;
 
     ${media.small} {
@@ -29,6 +29,7 @@ const DescriptionWrapper = styled.div`
   }
 
   & > p {
+    font-size: 14px;
     margin: 0 0 0.5rem 0;
 
     ${media.small} {
@@ -39,10 +40,12 @@ const DescriptionWrapper = styled.div`
     }
 
     & > a {
-      margin-left: 4px;
+      font-size: 14px;
+      margin-left: 8px;
 
       ${media.small} {
         font-size: 12px;
+        margin-left: 4px;
       }
     }
   }

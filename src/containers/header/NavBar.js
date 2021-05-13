@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 // components
 import Wrapper from 'components/header/navbar/Wrapper';
+import CategoryInfoWrapper from 'components/header/navbar/CategoryInfoWrapper';
 import CategoryInfo from 'components/header/navbar/CategoryInfo';
 import RightIcon from 'components/header/navbar/RightIcon';
+import TotalCnt from 'components/header/navbar/TotalCnt';
 
 const NavBar = () => {
   const categoryList = useSelector(state => state.catalog.categoryList);
   const categoryIdList = useSelector(state => state.product.options.categoryIdList);
+  const count = useSelector(state => state.product.info.count);
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -41,13 +44,16 @@ const NavBar = () => {
 
   return (
     <Wrapper onClick={onClick}>
-      {SelectedCategories}
-      {selectedCategories.length === 1 && (
-        <>
-          <RightIcon />
-          <CategoryInfo message="전체" />
-        </>
-      )}
+      <CategoryInfoWrapper>
+        {SelectedCategories}
+        {selectedCategories.length === 1 && (
+          <>
+            <RightIcon />
+            <CategoryInfo message="전체" />
+          </>
+        )}
+      </CategoryInfoWrapper>
+      <TotalCnt value={count} />
     </Wrapper>
   );
 };

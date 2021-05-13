@@ -21,6 +21,7 @@ const Container = styled.li`
 
   & > a {
     color: ${({ isChecked }) => (isChecked ? palette.orange4 : palette.gray6)};
+    transform: ${({ isChecked }) => (isChecked ? `scale(1.1)` : '')};
 
     &:hover {
       color: ${({ isChecked }) => (isChecked ? palette.orange4 : palette.black)};

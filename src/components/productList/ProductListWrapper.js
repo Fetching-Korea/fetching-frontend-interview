@@ -6,7 +6,7 @@ const ProductListWrapper = styled(LimitWidthLayout)`
   height: auto;
   min-height: 1000px;
   flex-grow: 1;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 140px;
 `;
 

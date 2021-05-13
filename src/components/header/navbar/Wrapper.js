@@ -9,6 +9,7 @@ const Wrapper = styled(LimitWidthLayout)`
   width: 94vw;
   height: 32px;
   align-items: center;
+  justify-content: space-between;
 
   ${media.small} {
     display: flex;

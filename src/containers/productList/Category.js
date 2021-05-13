@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 // components
-import Wrapper from 'components/product/topCategory/Wrapper';
-import Title from 'components/product/topCategory/Title';
-import CategoryLinkWrapper from 'components/product/topCategory/CategoryLinkWrapper';
-import CategoryLink from 'components/product/topCategory/CategoryLink';
+import Wrapper from 'components/productList/category/Wrapper';
+import Title from 'components/productList/category/Title';
+import CategoryLinkWrapper from 'components/productList/category/CategoryLinkWrapper';
+import CategoryLink from 'components/productList/category/CategoryLink';
 // hooks
 import useBasePath from 'lib/hooks/useBasePath';
 
