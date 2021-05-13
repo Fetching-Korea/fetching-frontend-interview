@@ -31,7 +31,7 @@ export const getProductList = () => (dispatch, getState) => {
         }),
       );
       dispatch(setBookmark(res.bookmark));
-      dispatch(pushProductList(...res.results));
+      dispatch(pushProductList(res.results));
     });
 };
 
@@ -91,7 +91,7 @@ function product(state = initialState, action) {
     /* Push productList */
     case PUSH_PRODUCT_LIST:
       return produce(state, draft => {
-        draft.productList.push(action.payload);
+        draft.productList.push(...action.payload);
       });
 
     /* Clear productList */

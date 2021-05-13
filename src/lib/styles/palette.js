@@ -73,6 +73,8 @@ const palette = {
   blue6: '#003e80',
   blue7: '#001f40',
   blue8: '#001226',
+  /* purple */
+  purple7: '#35256d',
 };
 
 export default palette;
