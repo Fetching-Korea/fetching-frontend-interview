@@ -9,7 +9,7 @@ const Header = ({ isShowCategory }) => {
   return (
     <Wrapper>
       <HeaderBar />
-      {isShowCategory && <CategoryBar />}
+      <CategoryBar isShowCategory={isShowCategory} />
       {isShowCategory && <NavBar />}
     </Wrapper>
   );

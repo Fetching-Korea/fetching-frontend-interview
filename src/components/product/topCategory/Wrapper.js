@@ -6,7 +6,7 @@ import palette from 'lib/styles/palette';
 const Wrapper = styled.div`
   width: 100%;
   max-width: 1140px;
-  padding: 2rem 0 1rem 0;
+  padding: 20px 0 1rem 0;
   margin: 0 auto;
   border-bottom: 1px solid ${palette.gray2};
 

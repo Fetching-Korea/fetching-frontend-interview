@@ -13,13 +13,14 @@ import VerticalBar from 'components/header/categorybar/VerticalBar';
 // hooks
 import useBasePath from 'lib/hooks/useBasePath';
 
-const CategoryBar = () => {
+const CategoryBar = ({ isShowCategory = true }) => {
   const categoryList = useSelector(state => state.catalog.categoryList);
   const categoryIdList = useSelector(state => state.product.options.categoryIdList);
 
   const [subCategoryList, setSubCategoryList] = useState([]);
 
-  const basePath = useBasePath();
+  let basePath = useBasePath();
+  basePath = basePath === '/productList' ? basePath : '/productList';
 
   /** 해당 카테고리 경로 반환 */
   const getCategoryPath = (category, depth) => {
@@ -90,14 +91,16 @@ const CategoryBar = () => {
         </GenderLinkWrapper>
       </TopWrapper>
 
-      <CategoryLinkWrapper>
-        <CategoryLink
-          to={getCategoryPath(null, 1)}
-          message="전체"
-          isChecked={categoryIdList.length < 2}
-        />
-        {CategoryLinkList}
-      </CategoryLinkWrapper>
+      {isShowCategory && (
+        <CategoryLinkWrapper>
+          <CategoryLink
+            to={getCategoryPath(null, 1)}
+            message="전체"
+            isChecked={categoryIdList.length < 2}
+          />
+          {CategoryLinkList}
+        </CategoryLinkWrapper>
+      )}
     </Wrapper>
   );
 };

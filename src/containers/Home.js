@@ -11,7 +11,7 @@ const Home = () => {
 
       <div>
         <Btn to="/productList">상품 목록 페이지</Btn>
-        <Btn to="/brands">브랜드 페이지</Btn>
+        <Btn to="/brand">브랜드 페이지</Btn>
       </div>
 
       <Post>

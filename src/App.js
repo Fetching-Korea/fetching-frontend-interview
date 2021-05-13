@@ -31,7 +31,7 @@ const App = () => {
           exact
         />
         <Route path="/product/:id" component={PruductDetailPage} exact />
-        <Route path="/brands" component={BrandListPage} exact />
+        <Route path={['/brand', '/brand/:brandId']} component={BrandListPage} exact />
         <Route path="*" component={NotFound} status={404} />
       </Switch>
       <Modal /> {/* Modal Position */}
