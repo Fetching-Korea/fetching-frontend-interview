@@ -5,18 +5,32 @@ import AlphabetWrapper from 'components/brand/AlphabetWrapper';
 import AlphabetBtn from 'components/brand/AlphabetBtn';
 import BrandWrapper from 'components/brand/BrandWrapper';
 import AlphabetBrand from 'components/brand/AlphabetBrand';
+// hooks
+import useScrollDirection from 'lib/hooks/useScrollDirection';
 
 const Brand = () => {
   const brandList = useSelector(state => state.catalog.brandList);
 
   const [alphabetList, setAlphabetList] = useState([]);
-  const ref = useRef(null);
+  const brandRef = useRef(null);
+  const headerRef = useRef(null);
+  const scrollDirection = useScrollDirection();
+
+  const headerEvent = direction => {
+    if (!headerRef.current) return;
+
+    if (direction === 'DOWN') {
+      headerRef.current.style.top = '0px';
+    } else {
+      headerRef.current.style.top = '38px';
+    }
+  };
 
   /** 알파벳 위치로 스크롤 이동 함수 */
   const onClickAlphabet = char => {
-    if (!ref.current) return;
+    if (!brandRef.current) return;
 
-    const target = ref.current.querySelector(`[data-char="${char}"]`);
+    const target = brandRef.current.querySelector(`[data-char="${char}"]`);
     if (!target) return;
 
     document.scrollingElement.scrollTop = target.offsetTop - 61;
@@ -37,10 +51,14 @@ const Brand = () => {
     setAlphabetList(Object.keys(brandList));
   }, [brandList, setAlphabetList]);
 
+  useEffect(() => {
+    headerEvent(scrollDirection);
+  }, [scrollDirection]);
+
   return (
     <>
-      <AlphabetWrapper>{AlphabetList}</AlphabetWrapper>
-      <BrandWrapper ref={ref}>{AlphabetBrandList}</BrandWrapper>
+      <AlphabetWrapper ref={headerRef}>{AlphabetList}</AlphabetWrapper>
+      <BrandWrapper ref={brandRef}>{AlphabetBrandList}</BrandWrapper>
     </>
   );
 };

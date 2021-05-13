@@ -4,6 +4,7 @@ import LimitWidthLayout from 'components/layout/LimitWidthLayout';
 
 const ProductListWrapper = styled(LimitWidthLayout)`
   height: auto;
+  min-height: 1000px;
   flex-grow: 1;
   margin-bottom: 140px;
 `;
