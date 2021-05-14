@@ -1,61 +1,90 @@
 # Fetching 사전 과제
+
+
+
+**작성자**: 김형석 [[altmshkfgudtjr@naver.com](mailto:altmshfkgudtjr@naver.com)]
+
+**소속**: 세종대학교 학부생
+
 ---
 
-## 무엇을 하면 될까요?
----
-- UI와 디자인에 제약을 두지 않습니다. 
-  실제 상용화된 서비스라 생각하고 최대한 상식적인 웹을 구현해 주세요.
-- React, Redux, styled-components를 사용하여 구현해 주세요.
-  (필요에 의해 추가적인 라이브러리를 사용하셔도 괜찮습니다.)
-- 반응형으로 구현해 주세요.
-- 기간: 5일
-
-## TODO
----
-### 1.상품 목록 페이지 화면 개발(`/productList`)
-- 카테고리 대분류 및 소분류 클릭 시 해당 상품 목록들로 렌더 되어야 합니다.
-- 브랜드 및 가격을 필터링해서 상품 리스트를 확인할 수 있습니다.
-- 상품 목록 페이지에서 상품 상세페이지(`/productDetail/:id`) 이동 후 
-  이전 페이지(`/productList`)로 돌아왔을 때 설정한 필터 옵션 및 스크롤 위치가 유지되어야 합니다.
-- 페이지 이동 목적으로 상품 상세 페이지(`/productDetail/:id`) 화면은 구현하지 않으셔도 됩니다.
-
-#### 예시
-<img src="./image/productlist.gif" width="320" height="568" />
 
 
-### 2.브랜드 전체 리스트 페이지 화면 개발(`/brands`)
-- 브랜드 전체 페이지에서 알파벳 클릭 시 해당 알파벳 브랜드 위치로 스크롤이 이동되어야 합니다.
-
-### 예시
-<img src="./image/brands.gif" width="320" height="568" />
 
 
-## API URL
----
-- `상품 목록`: https://test.fetchingapp.co.kr/api/items/search  (POST)
-  - **parameter**
-    - `bookmark`: object (어느 데이터까지 받아 왔는지 알 수 있는 정보)
-       - 페이지 네이션 구현 시 다음 데이터를 불러올 때 이전 bookmark를 함께 보냅니다
-    - `categoryId`: number (카테고리 ID)
-    - `minimumPrice`: number (최소 가격)
-    - `maximumPrice`: number (최대 가격)
-    - `sort`: number (0: 최신순, 1: 할인율, 2: 낮은 가격, 3: 높은 가격)
-    - `needCount`: true
+## 기술 스택
 
-- `브랜드`: https://test.fetchingapp.co.kr/api/brands (GET)
+명시사항 그대로 `React`, `Redux`, `Styled-components` 를 사용하였습니다. 
 
-- `카테고리`: https://test.fetchingapp.co.kr/api/categories (GET)
+여기에 추가적으로 `react-swipeable-bottom-sheet` 라는 패키지를 추가적으로 사용하였습니다.
 
-## 목표
-- 기본적인 React Component 및 Redux 활용법에 대해 확인.
-- 비동기로 실행되는 자바스크립트에서 서버 데이터를 받아 제어할 수 있는지 확인.
-- 제시된 기능 및 UI/UX를 고려하여 구현할 수 있는지 확인.
+빠르게 개발하기 위해서 `CRA` 를 통해 개발하였으며, `Redux` 에서 비동기처리를 위해서 `Redux-thunk` 미들웨어를 적용하였습니다.
 
-## 제출 방법
----
-- 리포지토리를 fork 하여 개발한 후, PR을 보내주세요.
 
-## 문의사항
----
-- 사전과제를 진행하며 궁금한 점은 아래의 이메일을 통해 문의해 주시기 바랍니다.
-- raeyoung.kim@fetching.co.kr
+
+
+
+## 개발 내용
+
+다음 항목에서는 주어진 조건 이외의 개발 내용에 대해서 소개합니다.
+
+
+
+#### 주어지 개발 조건
+
+- 상품 목록 화면 개발
+  - 카테고리 대분류 및 소분류 클릭 시 해당 상품 목록들로 렌더 되어야 합니다.
+  - 브랜드 및 가격을 필터링해서 상품 리스트를 확인할 수 있습니다.
+  - 상품 목록 페이지에서 상품 상세페이지(`/productDetail/:id`) 이동 후 이전 페이지(`/productList`)로 돌아왔을 때 설정한 필터 옵션 및 스크롤 위치가 유지되어야 합니다.
+
+- 브랜드 전체 목록 화면 개발
+  - 브랜드 전체 페이지에서 알파벳 클릭 시 해당 알파벳 브랜드 위치로 스크롤이 이동되어야 합니다.
+
+
+
+
+
+#### 그 외의 개발 내용
+
+- **반응형 및 UX 를 고려한 `Header`**
+
+  - 스크롤 방향에 따라서 Header 노출 여부를 결정합니다.
+    ![](https://user-images.githubusercontent.com/47492535/118244341-62e55900-b4da-11eb-928d-16fd3615da81.png)
+
+- **`상품목록 페이지`와 같은경우 다음과 같은 현재 경로를 알려줍니다.**
+  ![](https://user-images.githubusercontent.com/47492535/118245562-f1a6a580-b4db-11eb-9c13-89da16c60aee.png)
+
+- **상품 목록 더 보기 버튼 애니메이션**
+
+  - 상품 목록 제일 아래에는 다음과 같은 버튼이 존재합니다.
+    ![](https://user-images.githubusercontent.com/47492535/118244639-bb1c5b00-b4da-11eb-9d8a-c8779d56ada1.png)
+  - 깜빡이면서 클릭이 차단되며, 애니메이션이 진행됩니다.
+    ![](https://user-images.githubusercontent.com/47492535/118244663-c1aad280-b4da-11eb-931f-a312df370ab1.png)
+
+- **`브랜드` 페이지에서 알파벳 리스트 상단 고정**
+
+  - 특정 브랜드 초성에 바로 접근하기 위해서 알파벳은 항상 상단에 고정됩니다.
+    ![](https://user-images.githubusercontent.com/47492535/118245003-30882b80-b4db-11eb-9943-e4b279651753.png)
+
+  
+
+  - 또한, `횡스크롤`이 어려운 데스크탑 경우에는 다음과 같이 알파벳이 전부 노출되어 클릭하기 쉽게 제작되었습니다.
+    <img src="https://user-images.githubusercontent.com/47492535/118245155-66c5ab00-b4db-11eb-96ec-27308899b678.png" style="zoom:67%;" />
+
+
+
+
+
+#### 그 외의 환경 세팅
+
+- 실제 배포환경에 맞게 정적 자원들을 세팅하였습니다. (일부 자원은 `Fetching` 사이트에서 조달하였습니다.)
+  - favicons, ogImage, 그 외의 manifest 자원 등..
+
+- 폰트를 빠르게 로딩하기 위해서 구글 폰트를 사용하였습니다.
+
+  ```css
+  @import url(https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;400;500;600;900&display=fallback);	
+  ```
+
+  
+

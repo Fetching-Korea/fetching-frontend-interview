@@ -13,7 +13,7 @@ export const getProductList = id => (dispatch, getState) => {
     : state.options.categoryIdList.length > 0
     ? state.options.categoryIdList[state.options.categoryIdList.length - 1]
     : null;
-  if (!categoryId) return;
+  if (!categoryId) return Promise.reject();
 
   return productAPI
     .getItems(

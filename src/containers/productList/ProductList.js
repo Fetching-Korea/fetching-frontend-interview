@@ -58,7 +58,13 @@ const ProductList = () => {
   useEffect(() => {
     if (isReady && productList.length === 0) {
       setIsLoading(true);
-      dispatch(getProductList()).then(() => setIsLoading(false));
+      dispatch(getProductList())
+        .then(() => setIsLoading(false))
+        .catch(() => {
+          dispatch(getProductList())
+            .then(() => setIsLoading(false))
+            .catch(() => {});
+        });
     }
   }, [dispatch, isReady]);
   /* eslint-enable */

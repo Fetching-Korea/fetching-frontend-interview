@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 // components
+import CategoryImg from 'components/productList/CategoryImg';
 import Wrapper from 'components/productList/category/Wrapper';
 import Title from 'components/productList/category/Title';
 import CategoryLinkWrapper from 'components/productList/category/CategoryLinkWrapper';
@@ -48,7 +49,18 @@ const TopCategory = () => {
 
   /** 카테고리 소분류 리스트 설정 */
   useEffect(() => {
-    if (categoryList.length <= 1 || categoryIdList.length <= 1) return;
+    setCategoryName(``);
+    setSubCategoryList([]);
+    if (categoryList.length === 0 || categoryIdList.length === 0) return;
+    if (categoryList.length <= 1 || categoryIdList.length <= 1) {
+      const id = categoryIdList[0];
+      const filtered = categoryList.filter(category => category.id === id);
+      if (filtered.length === 0) return;
+
+      setCategoryName(filtered[0].name + ' 전체');
+      setSubCategoryList([]);
+      return;
+    }
 
     const category_0 = categoryList.filter(category => category.id === categoryIdList[0]);
     if (category_0.length === 0) return;
@@ -65,6 +77,12 @@ const TopCategory = () => {
   return (
     <Wrapper>
       <Title>{categoryName}</Title>
+      {CategoryLinks.length === 0 && (
+        <CategoryImg
+          src="https://fetching-app.s3.ap-northeast-2.amazonaws.com/exhibitions/banner/pc_women_dress.png"
+          art="소개"
+        />
+      )}
       <CategoryLinkWrapper>{CategoryLinks}</CategoryLinkWrapper>
     </Wrapper>
   );

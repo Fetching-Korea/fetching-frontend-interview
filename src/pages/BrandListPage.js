@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 // containers
 import Header from 'containers/header';
+import Footer from 'containers/Footer';
 import Brand from 'containers/Brand';
 // components
 import MainPageLayout from 'components/layout/MainPageLayout';
@@ -15,6 +16,7 @@ const BrandListPage = () => {
       <MainPageLayout>
         <Header isShowCategory={false} />
         <Brand />
+        <Footer />
       </MainPageLayout>
     </>
   );

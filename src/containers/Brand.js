@@ -40,7 +40,7 @@ const Brand = () => {
     const target = brandRef.current.querySelector(`[data-char="${char}"]`);
     if (!target) return;
 
-    document.scrollingElement.scrollTop = target.offsetTop - 61;
+    document.scrollingElement.scrollTop = target.offsetTop - 81;
   };
 
   /** 상단 알파벳 바로가기 버튼 리스트 */

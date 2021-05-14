@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 // containers
 import Header from 'containers/header';
+import Footer from 'containers/Footer';
 // components
 import MainPageLayout from 'components/layout/MainPageLayout';
 import BackBtn from 'components/common/BackBtn';
@@ -19,6 +20,7 @@ const ProductDetailPage = ({ match }) => {
 
         <h1>상품 ID: {productId}</h1>
         <BackBtn />
+        <Footer />
       </MainPageLayout>
     </>
   );
