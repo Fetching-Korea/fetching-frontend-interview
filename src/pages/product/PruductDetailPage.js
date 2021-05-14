@@ -6,7 +6,6 @@ import MainPageLayout from 'components/layout/MainPageLayout';
 
 const ProductDetailPage = ({ match }) => {
   const productId = match.params['id'];
-  console.log(productId);
 
   return (
     <>
@@ -16,6 +15,8 @@ const ProductDetailPage = ({ match }) => {
 
       <MainPageLayout>
         <Header isShowCategory={true} />
+
+        <h1>상품 ID: {productId}</h1>
       </MainPageLayout>
     </>
   );

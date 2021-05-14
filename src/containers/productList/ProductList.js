@@ -30,15 +30,18 @@ const ProductList = () => {
     const { category0, category1, category2 } = parameters;
     let params = [category0, category1, category2];
     params = params.filter(param => param);
+    params = params.map(param => Number(param));
 
     if (categoryIdList.length === 0 || params.length === 0) return;
 
     if (params.length === categoryIdList.length) {
       for (let i = 0; i < params.length; i++) {
-        if (Number(params[i]) !== categoryIdList[i]) {
+        if (params[i] !== categoryIdList[i]) {
           setIsLoading(true);
           dispatch(clearProductList());
-          dispatch(getProductList()).then(() => setIsLoading(false));
+          dispatch(getProductList(params[params.length - 1])).then(() =>
+            setIsLoading(false),
+          );
           return;
         }
       }
@@ -47,7 +50,7 @@ const ProductList = () => {
 
     setIsLoading(true);
     dispatch(clearProductList());
-    dispatch(getProductList()).then(() => setIsLoading(false));
+    dispatch(getProductList(params[params.length - 1])).then(() => setIsLoading(false));
   }, [dispatch, categoryIdList, parameters]);
 
   /** 초기 상품 호출 1회 호출 */
@@ -63,7 +66,7 @@ const ProductList = () => {
   const ProductList = productList.map(product => (
     <Product
       key={product.id}
-      to={`/productDetail/${product.id}`}
+      to={`/product/${product.id}`}
       product={product}
       onClick={() => {}}
     />

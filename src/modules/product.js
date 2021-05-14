@@ -5,13 +5,14 @@ import * as productAPI from 'controllers/product';
 /*
 	Thunk Actions
 */
-export const getProductList = () => (dispatch, getState) => {
+export const getProductList = id => (dispatch, getState) => {
   const state = getState().product;
 
-  const categoryId =
-    state.options.categoryIdList.length > 0
-      ? state.options.categoryIdList[state.options.categoryIdList.length - 1]
-      : null;
+  const categoryId = id
+    ? id
+    : state.options.categoryIdList.length > 0
+    ? state.options.categoryIdList[state.options.categoryIdList.length - 1]
+    : null;
   if (!categoryId) return;
 
   return productAPI

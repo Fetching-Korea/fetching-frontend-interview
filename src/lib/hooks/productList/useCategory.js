@@ -17,7 +17,6 @@ const useCategory = () => {
   /** 파라미터으로부터 카테고리 ID 적용 작업 */
   useEffect(() => {
     if (categoryList.length === 0) return;
-
     const filtered = [category0, category1, category2].filter(v => v);
     const result = filtered.map(v => Number(v));
 
