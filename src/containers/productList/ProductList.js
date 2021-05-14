@@ -1,24 +1,64 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // components
 import ProductListWrapper from 'components/productList/ProductListWrapper';
+import MoreBtn from 'components/productList/MoreBtn';
 import Product from 'components/product';
+import LoadingProduct from 'components/product/LoadingProduct';
 // modules
 import { clearProductList, getProductList } from 'modules/product';
 
 const ProductList = () => {
   const dispatch = useDispatch();
+  const isReady = useSelector(state => state.app.isReady);
+  const isLastProduct = useSelector(state => state.product.isLast);
   const categoryIdList = useSelector(state => state.product.options.categoryIdList);
   const productList = useSelector(state => state.product.productList);
+  const parameters = useParams();
 
-  /** 상품 호출 */
-  // TODO 항상 호출하는 것이 아닌, 변경됬을 때에만 호출하기
+  const [isLoading, setIsLoading] = useState(false);
+
+  /** 상품 더보기 클릭 함수 */
+  const onMoreProducts = () => {
+    setIsLoading(true);
+    dispatch(getProductList()).finally(() => setIsLoading(false));
+  };
+
+  /** 상품 호출 작업 */
   useEffect(() => {
-    if (categoryIdList.length === 0) return;
+    const { category0, category1, category2 } = parameters;
+    let params = [category0, category1, category2];
+    params = params.filter(param => param);
 
+    if (categoryIdList.length === 0 || params.length === 0) return;
+
+    if (params.length === categoryIdList.length) {
+      for (let i = 0; i < params.length; i++) {
+        if (Number(params[i]) !== categoryIdList[i]) {
+          setIsLoading(true);
+          dispatch(clearProductList());
+          dispatch(getProductList()).then(() => setIsLoading(false));
+          return;
+        }
+      }
+      return;
+    }
+
+    setIsLoading(true);
     dispatch(clearProductList());
-    dispatch(getProductList());
-  }, [dispatch, categoryIdList]);
+    dispatch(getProductList()).then(() => setIsLoading(false));
+  }, [dispatch, categoryIdList, parameters]);
+
+  /** 초기 상품 호출 1회 호출 */
+  /* eslint-disable */
+  useEffect(() => {
+    if (isReady && productList.length === 0) {
+      setIsLoading(true);
+      dispatch(getProductList()).then(() => setIsLoading(false));
+    }
+  }, [dispatch, isReady]);
+  /* eslint-enable */
 
   const ProductList = productList.map(product => (
     <Product
@@ -28,10 +68,14 @@ const ProductList = () => {
       onClick={() => {}}
     />
   ));
+  const LoadingProductList = new Array(12)
+    .fill(0)
+    .map((_, idx) => <LoadingProduct key={idx} />);
 
   return (
     <ProductListWrapper>
-      <ul>{ProductList}</ul>
+      <ul>{productList.length === 0 ? LoadingProductList : ProductList}</ul>
+      {!isLastProduct && <MoreBtn isLoading={isLoading} onClick={onMoreProducts} />}
     </ProductListWrapper>
   );
 };

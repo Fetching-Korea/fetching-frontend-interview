@@ -3,10 +3,16 @@ import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 
 const Discount = ({ price, ratio }) => {
+  const ratioValue = Math.floor(Number(ratio));
+
   return (
     <Wrapper>
-      <Price>{price}</Price>
-      <Ratio>{Number(ratio)}%</Ratio>
+      {ratioValue !== 0 && (
+        <>
+          <Price>{price.toLocaleString()}원</Price>
+          <Ratio>{ratioValue}%</Ratio>
+        </>
+      )}
     </Wrapper>
   );
 };

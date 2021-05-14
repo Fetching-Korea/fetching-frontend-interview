@@ -17,10 +17,12 @@ const ProductListWrapper = styled(LimitWidthLayout)`
     grid-template-rows: 1fr;
     gap: 1rem;
     justify-content: space-between;
+    margin-bottom: 100px;
 
     ${media.small} {
       grid-template-columns: repeat(auto-fit, 180px);
       justify-content: space-around;
+      margin-bottom: 80px;
     }
 
     ${mediaQuery(400)} {

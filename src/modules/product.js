@@ -32,18 +32,27 @@ export const getProductList = () => (dispatch, getState) => {
       );
       dispatch(setBookmark(res.bookmark));
       dispatch(pushProductList(res.results));
+
+      // 더 이상 호출할 필요가 없을 경우, Check
+      if (res.results.length === 0) {
+        dispatch(setIslast(true));
+      } else {
+        dispatch(setIslast(false));
+      }
     });
 };
 
 /*
 	Actions
 */
+const SET_IS_LAST = 'product/SET_IS_LAST';
 const PUSH_PRODUCT_LIST = 'product/PUSH_PRODUCT_LIST';
 const CLEAR_PRODUCT_LIST = 'product/CLEAR_PRODUCT_LIST';
 const SET_PRODUCT_OPTIONS = 'product/SET_PRODUCT_OPTIONS';
 const SET_PRODUCT_INFO = 'product/SET_PRODUCT_INFO';
 const SET_BOOKMARK = 'product/SET_BOOKMARK';
 
+export const setIslast = bool => ({ type: SET_IS_LAST, payload: bool });
 export const pushProductList = data => ({ type: PUSH_PRODUCT_LIST, payload: data });
 export const clearProductList = () => ({ type: CLEAR_PRODUCT_LIST });
 export const setProductOptions = option => ({
@@ -55,6 +64,7 @@ export const setBookmark = bookmark => ({ type: SET_BOOKMARK, payload: bookmark 
 
 /**
  * InitialState
+ * @param {boolean} isLast 페이지네이션 마지막 여부
  * @param {Product[]} productList 상품 목록
  * @param {object} info 기타 정보
  * @param {number} info.count 상품 목록 총 개수
@@ -68,6 +78,7 @@ export const setBookmark = bookmark => ({ type: SET_BOOKMARK, payload: bookmark 
  * @param {object} bookmark 페이지네이션 북마크 (어느 데이터까지 받아 왔는지 알 수 있는 정보)
  */
 const initialState = {
+  isLast: false,
   productList: [],
   info: {
     count: 0,
@@ -88,6 +99,12 @@ const initialState = {
 */
 function product(state = initialState, action) {
   switch (action.type) {
+    /* Set isLast */
+    case SET_IS_LAST:
+      return product(state, draft => {
+        draft.isLast = action.payload;
+      });
+
     /* Push productList */
     case PUSH_PRODUCT_LIST:
       return produce(state, draft => {

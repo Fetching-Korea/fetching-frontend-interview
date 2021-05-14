@@ -5,6 +5,7 @@ import { BagIcon } from 'lib/svg';
 // lib
 import media from 'lib/styles/media';
 import palette from 'lib/styles/palette';
+import * as styles from 'lib/styles/styles';
 
 const IconBtn = ({ count, to }) => {
   return (
@@ -50,6 +51,7 @@ const Count = styled.span`
   bottom: 0;
   margin: auto;
   color: ${palette.orange4};
+  ${styles.noselect};
 `;
 
 export default IconBtn;

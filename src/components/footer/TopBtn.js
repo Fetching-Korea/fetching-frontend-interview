@@ -9,7 +9,11 @@ const TopBtn = () => {
     document.scrollingElement.scrollTop = 0;
   };
 
-  return <Btn onClick={onClick}>TOP</Btn>;
+  return (
+    <Btn onClick={onClick}>
+      <span>TOP</span>
+    </Btn>
+  );
 };
 
 const Btn = styled.button`
@@ -20,10 +24,14 @@ const Btn = styled.button`
   line-height: 22px;
   box-sizing: border-box;
   padding: 4px 0;
-  font-size: 12px;
-  font-weight: 500;
-  color: ${palette.white};
   transition: 0.2s ${styles.transition};
+
+  & > span {
+    font-size: 12px;
+    font-weight: 500;
+    color: ${palette.white};
+    ${styles.noselect}
+  }
 
   &:hover {
     padding: 4px 4px 4px 0;

@@ -21,6 +21,7 @@ export const getItems = (
 ) => {
   const sendData = new FormData();
   sendData.append('bookmark', bookmark ? bookmark : {});
+  sendData.append('categoryId', categoryId ? categoryId : 0);
   sendData.append('minimumPrice', minimumPrice ? minimumPrice : 0);
   sendData.append('maximumPrice', maximumPrice ? maximumPrice : 999_999_999_999);
   sendData.append('sort', sort);

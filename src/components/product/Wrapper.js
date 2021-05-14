@@ -12,6 +12,15 @@ const Wrapper = ({ to, onClick, children }) => {
   );
 };
 
+export const FakeWrapper = ({ children }) => {
+  return (
+    <Container>
+      {children}
+      <FakeBtn />
+    </Container>
+  );
+};
+
 const Container = styled.li`
   max-width: 230px;
 
@@ -32,6 +41,12 @@ const Btn = styled(Link)`
   display: flex;
   flex-direction: column;
   color: ${palette.black};
+`;
+
+const FakeBtn = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 92px;
 `;
 
 export default Wrapper;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 
 const Price = ({ price }) => {
-  return <Value>{price}원</Value>;
+  return <Value>{price.toLocaleString()}원</Value>;
 };
 
 const Value = styled.p`
