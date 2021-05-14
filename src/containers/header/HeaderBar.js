@@ -1,4 +1,5 @@
 import { useCallback, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 // components
 import Wrapper from 'components/header/headerbar/Wrapper';
 import LeftWrapper from 'components/header/headerbar/LeftWrapper';
@@ -8,8 +9,11 @@ import SearchBar from 'components/header/headerbar/SearchBar';
 import IconBtn from 'components/header/headerbar/IconBtn';
 import IconLink from 'components/header/headerbar/IconLink';
 import BagBtn from 'components/header/headerbar/BagBtn';
+// modules
+import { pushModal } from 'modules/modal';
 
 const HeaderBar = () => {
+  const dispatch = useDispatch();
   const searchRef = useRef(null);
 
   const onSearch = useCallback(() => {
@@ -28,10 +32,17 @@ const HeaderBar = () => {
     }
   };
 
+  const onClickMenu = () =>
+    dispatch(
+      pushModal({
+        name: 'CategoryMenu',
+      }),
+    );
+
   return (
     <Wrapper>
       <LeftWrapper>
-        <IconBtn type="MENU" onClick={() => {}} />
+        <IconBtn type="MENU" onClick={onClickMenu} />
         <IconBtn type="SEARCH" onClick={() => {}} />
       </LeftWrapper>
       <Logo />
@@ -44,7 +55,7 @@ const HeaderBar = () => {
       <RightWrapper>
         <IconLink type="USER" to="/user" isHiddenMobile={true} />
         <IconLink type="HEART" to="/wish" />
-        <BagBtn count={2} to="/busket" />
+        <BagBtn count={97} to="/busket" />
       </RightWrapper>
     </Wrapper>
   );

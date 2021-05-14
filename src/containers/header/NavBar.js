@@ -14,11 +14,6 @@ const NavBar = () => {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
-  /** 모바일 카테고리 선택 함수 */
-  const onClick = () => {
-    // TODO 카테고리 선택 열리기
-  };
-
   const SelectedCategories = selectedCategories
     .map((categoryName, idx) => <CategoryInfo key={idx} message={categoryName} />)
     .reduce((accu, elem) => {
@@ -43,7 +38,7 @@ const NavBar = () => {
   }, [categoryList, categoryIdList, setSelectedCategories]);
 
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper onClick={() => {}}>
       <CategoryInfoWrapper>
         {SelectedCategories}
         {selectedCategories.length === 1 && (

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from 'containers/header';
 // components
 import MainPageLayout from 'components/layout/MainPageLayout';
+import BackBtn from 'components/common/BackBtn';
 
 const ProductDetailPage = ({ match }) => {
   const productId = match.params['id'];
@@ -17,6 +18,7 @@ const ProductDetailPage = ({ match }) => {
         <Header isShowCategory={true} />
 
         <h1>상품 ID: {productId}</h1>
+        <BackBtn />
       </MainPageLayout>
     </>
   );

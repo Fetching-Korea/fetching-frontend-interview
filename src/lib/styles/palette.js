@@ -14,7 +14,7 @@ const palette = {
   white: '#ffffff',
   black: '#333333',
   /* gray */
-  gray0: '#f0f0f0',
+  gray0: '#f8f8f8',
   gray1: '#eeeceb',
   gray2: '#dedddb',
   gray3: '#cbc5c2',

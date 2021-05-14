@@ -10,8 +10,6 @@ import GenderLink from 'components/header/categorybar/GenderLink';
 import CategoryLink from 'components/header/categorybar/CategoryLink';
 import SubCategoryLink from 'components/header/categorybar/SubCategoryLink';
 import VerticalBar from 'components/header/categorybar/VerticalBar';
-// hooks
-import useBasePath from 'lib/hooks/useBasePath';
 
 const CategoryBar = ({ isShowCategory = true }) => {
   const categoryList = useSelector(state => state.catalog.categoryList);
@@ -19,8 +17,7 @@ const CategoryBar = ({ isShowCategory = true }) => {
 
   const [subCategoryList, setSubCategoryList] = useState([]);
 
-  let basePath = useBasePath();
-  basePath = basePath === '/productList' ? basePath : '/productList';
+  let basePath = '/productList';
 
   /** 해당 카테고리 경로 반환 */
   const getCategoryPath = (category, depth) => {
