@@ -50,6 +50,7 @@ const PUSH_PRODUCT_LIST = 'product/PUSH_PRODUCT_LIST';
 const CLEAR_PRODUCT_LIST = 'product/CLEAR_PRODUCT_LIST';
 const SET_PRODUCT_OPTIONS = 'product/SET_PRODUCT_OPTIONS';
 const SET_PRODUCT_INFO = 'product/SET_PRODUCT_INFO';
+const SET_PRODUCT_SELECTED = 'product/SET_PRODUCT_SELECTED';
 const SET_BOOKMARK = 'product/SET_BOOKMARK';
 
 export const setIslast = bool => ({ type: SET_IS_LAST, payload: bool });
@@ -60,6 +61,10 @@ export const setProductOptions = option => ({
   payload: option,
 });
 export const setProductInfo = info => ({ type: SET_PRODUCT_INFO, payload: info });
+export const setProductSelected = selected => ({
+  type: SET_PRODUCT_SELECTED,
+  payload: selected,
+});
 export const setBookmark = bookmark => ({ type: SET_BOOKMARK, payload: bookmark });
 
 /**
@@ -75,6 +80,9 @@ export const setBookmark = bookmark => ({ type: SET_BOOKMARK, payload: bookmark 
  * @param {(number | null)} options.minimumPrice 최소 가격
  * @param {(number | null)} options.maximumPrice 최대 가격
  * @param {(0 | 1 | 2 | 3)} options.sort 정렬 기준 (0: 최신순, 1: 할인율, 2: 낮은 가격, 3: 높은 가격)
+ * @param {object} selected 필터링 선택 정보
+ * @param {object[]} selected.brandList 브랜드 선택 정보
+ * @param {object[]} selected.price 가격 선택 정보
  * @param {object} bookmark 페이지네이션 북마크 (어느 데이터까지 받아 왔는지 알 수 있는 정보)
  */
 const initialState = {
@@ -90,6 +98,10 @@ const initialState = {
     minimumPrice: 0,
     maximumPrice: 999_999_999_999,
     sort: 0,
+  },
+  selected: {
+    brandList: [],
+    price: null,
   },
   bookmark: {},
 };
@@ -127,6 +139,12 @@ function product(state = initialState, action) {
     case SET_PRODUCT_INFO:
       return produce(state, draft => {
         draft.info = { ...state.info, ...action.payload };
+      });
+
+    /* Set product selected */
+    case SET_PRODUCT_SELECTED:
+      return produce(state, draft => {
+        draft.selected = { ...state.selected, ...action.payload };
       });
 
     /* Set bookmark */

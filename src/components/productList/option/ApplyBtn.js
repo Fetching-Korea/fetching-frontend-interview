@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // styles
 import palette from 'lib/styles/palette';
 import * as styles from 'lib/styles/styles';
+import media, { mediaValue } from 'lib/styles/media';
 
 const ApplyBtn = styled.button`
   padding: 4px 16px;
@@ -14,8 +15,20 @@ const ApplyBtn = styled.button`
   transition: 0.2s ${styles.transition};
   ${styles.noselect};
 
-  &:hover {
-    opacity: 1;
+  @media (min-width: ${mediaValue.small}px) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  ${media.small} {
+    height: 40px;
+    flex-grow: 1;
+    font-weight: 500;
+
+    &:active {
+      opacity: 1;
+    }
   }
 `;
 

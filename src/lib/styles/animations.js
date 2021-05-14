@@ -62,6 +62,14 @@ const blink = keyframes`
 const spin = keyframes`
 	to { transform: rotate(360deg); }
 `;
+const partialSheet = keyframes`
+	0% { opacity: 0; transform: translateY(100%); }
+	100% { opacity: 1; transform: translateY(0); }
+`;
+const leftMenu = keyframes`
+	0% { opacity: 0; transform: translateX(-100%); }
+	100% { opacity: 1; transform: translateY(0); }
+`;
 
 const animations = {
   fadeIn,
@@ -79,6 +87,8 @@ const animations = {
   tooltip,
   blink,
   spin,
+  partialSheet,
+  leftMenu,
 };
 
 export default animations;

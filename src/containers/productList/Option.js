@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // components
 import OptionWrapperDesktop from 'components/productList/option/OptionWrapperDesktop';
@@ -11,12 +11,27 @@ import FilterBtn from 'components/productList/option/FilterBtn';
 import FilteredBtn from 'components/productList/option/FilteredBtn';
 import TotalCnt from 'components/header/navbar/TotalCnt';
 // modules
-import { setProductOptions, clearProductList, getProductList } from 'modules/product';
+import { pushModal } from 'modules/modal';
+import {
+  setProductOptions,
+  setProductSelected,
+  clearProductList,
+  getProductList,
+} from 'modules/product';
 
 const ProductList = () => {
+  const priceList = [
+    { id: 0, name: '30만원 이하', min: 0, max: 300_000 },
+    { id: 1, name: '30만원 ~ 80만원', min: 300_000, max: 800_000 },
+    { id: 2, name: '80만원 ~ 160만원', min: 800_000, max: 1_600_000 },
+    { id: 3, name: '160만원 ~ 500만원', min: 1_600_000, max: 5_000_000 },
+    { id: 4, name: '500만원 이상', min: 5_000_000, max: 999_999_999_999 },
+  ];
+
   const dispatch = useDispatch();
   const count = useSelector(state => state.product.info.count);
   const sortId = useSelector(state => state.product.options.sort);
+  const selectedOptions = useSelector(state => state.product.selected);
   const brandObject = useSelector(state => state.catalog.brandList);
   const brandList = Object.keys(brandObject).reduce((acc, cur) => {
     acc.push(...brandObject[cur]);
@@ -67,10 +82,16 @@ const ProductList = () => {
 
     dispatch(
       setProductOptions({
-        brandIdList: selectedBrandList,
+        brandIdList: selectedBrandList.map(brand => brand.id),
         minimumPrice: selectedPrice ? selectedPrice.min : 0,
         maximumPrice: selectedPrice ? selectedPrice.max : 999_999_999_999,
         sort: sortId,
+      }),
+    );
+    dispatch(
+      setProductSelected({
+        brandList: selectedBrandList,
+        price: selectedPrice,
       }),
     );
     dispatch(clearProductList());
@@ -78,12 +99,30 @@ const ProductList = () => {
   };
 
   /** 필터링 메뉴 열기 */
-  // TODO 필터링 모달 제작
-  const onFilterModal = () => {};
+  const onFilterModal = () =>
+    dispatch(
+      pushModal({
+        name: 'FilterMenu',
+        args: {
+          priceList,
+        },
+      }),
+    );
 
   /** 정렬 메뉴 열기 */
-  // TODO 정렬 모달 제작
-  const onSortModal = () => {};
+  const onSortModal = () =>
+    dispatch(
+      pushModal({
+        name: 'SortMenu',
+      }),
+    );
+
+  /** 옵션 변경 사항 표시 작업 */
+  useEffect(() => {
+    setIsChanged(false);
+    setSelectedBrandList(selectedOptions.brandList);
+    setSelectedPrice(selectedOptions.price);
+  }, [selectedOptions, setIsChanged, setSelectedBrandList, setSelectedPrice]);
 
   return (
     <>
@@ -96,13 +135,7 @@ const ProductList = () => {
             onClick={onClickBrand}
           />
           <PriceOption
-            priceList={[
-              { id: 0, name: '30만원 이하', min: 0, max: 300_000 },
-              { id: 1, name: '30만원 ~ 80만원', min: 300_000, max: 800_000 },
-              { id: 2, name: '80만원 ~ 160만원', min: 800_000, max: 1_600_000 },
-              { id: 3, name: '160만원 ~ 500만원', min: 1_600_000, max: 5_000_000 },
-              { id: 4, name: '500만원 이상', min: 5_000_000, max: 999_999_999_999 },
-            ]}
+            priceList={priceList}
             selectedId={selectedPrice ? selectedPrice.id : null}
             onClick={onClickPrice}
           />
@@ -143,9 +176,11 @@ const ProductList = () => {
           {selectedBrandList.length > 0 && (
             <FilteredBtn
               type="BRAND"
-              message={`${selectedBrandList[0].name} 외 ${
-                selectedBrandList.length - 1
-              }개`}
+              message={
+                selectedBrandList.length === 1
+                  ? selectedBrandList[0].name
+                  : `${selectedBrandList[0].name} 외 ${selectedBrandList.length - 1}개`
+              }
               onClick={() => setSelectedBrandList([])}
             />
           )}

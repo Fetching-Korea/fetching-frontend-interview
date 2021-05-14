@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // styles
 import palette from 'lib/styles/palette';
 import * as styles from 'lib/styles/styles';
+import media, { mediaValue } from 'lib/styles/media';
 
 const CancelBtn = styled.button`
   padding: 4px 16px;
@@ -15,8 +16,23 @@ const CancelBtn = styled.button`
   transition: 0.2s ${styles.transition};
   ${styles.noselect};
 
-  &:hover {
-    opacity: 1;
+  @media (min-width: ${mediaValue.small}px) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  ${media.small} {
+    flex-grow: 1;
+    height: 40px;
+    margin-top: 2px;
+    border: 1px solid ${palette.gray4};
+    color: ${palette.gray5};
+
+    &:active {
+      border: 1px solid ${palette.orange4};
+      color: ${palette.orange4};
+    }
   }
 `;
 

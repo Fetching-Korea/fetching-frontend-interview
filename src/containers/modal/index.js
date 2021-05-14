@@ -1,1 +1,2 @@
-// export { Other } from "containers/modal/Other"
+export { FilterMenu } from 'containers/modal/FilterMenu';
+export { SortMenu } from 'containers/modal/SortMenu';
