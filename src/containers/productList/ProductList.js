@@ -37,6 +37,7 @@ const ProductList = () => {
     if (params.length === categoryIdList.length) {
       for (let i = 0; i < params.length; i++) {
         if (params[i] !== categoryIdList[i]) {
+          console.log('1 여기서 부름');
           setIsLoading(true);
           dispatch(clearProductList());
           dispatch(getProductList(params[params.length - 1])).then(() =>
@@ -48,10 +49,11 @@ const ProductList = () => {
       return;
     }
 
+    console.log('3 여기서 부름');
     setIsLoading(true);
     dispatch(clearProductList());
     dispatch(getProductList(params[params.length - 1])).then(() => setIsLoading(false));
-  }, [dispatch, categoryIdList, parameters]);
+  }, [dispatch, productList, categoryIdList, parameters]);
 
   /** 초기 상품 호출 1회 호출 */
   /* eslint-disable */
@@ -61,9 +63,9 @@ const ProductList = () => {
       dispatch(getProductList())
         .then(() => setIsLoading(false))
         .catch(() => {
-          dispatch(getProductList())
-            .then(() => setIsLoading(false))
-            .catch(() => {});
+          window.setTimeout(() => {
+            dispatch(getProductList()).then(() => setIsLoading(false));
+          }, 0);
         });
     }
   }, [dispatch, isReady]);
