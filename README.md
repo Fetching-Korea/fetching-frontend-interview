@@ -34,14 +34,14 @@
 ---
 - `상품 목록`: https://test.fetchingapp.co.kr/api/items/search  (POST)
   - **parameter**
-    - `bookmark`: object (어느 데이터까지 받아 왔는지 알 수 있는 정보)
+    - `bookmark`: `object` (어느 데이터까지 받아 왔는지 알 수 있는 정보)
        - 페이지 네이션 구현 시 다음 데이터를 불러올 때 이전 bookmark를 함께 보냅니다
-    - `categoryId`: number (카테고리 ID)
-    - `brandIdList`: Array<number> (브랜드 ID 리스트)
-    - `minimumPrice`: number (최소 가격)
-    - `maximumPrice`: number (최대 가격)
-    - `sort`: number (0: 최신순, 1: 할인율, 2: 낮은 가격, 3: 높은 가격)
-    - `needCount`: true
+    - `categoryId`: `number` (카테고리 ID)
+    - `brandIdList`: `Array<number>` (브랜드 ID 리스트)
+    - `minimumPrice`: `number` (최소 가격)
+    - `maximumPrice`: `number` (최대 가격)
+    - `sort`: `number` (0: 최신순, 1: 할인율, 2: 낮은 가격, 3: 높은 가격)
+    - `needCount`: `true`
 
 - `브랜드`: https://test.fetchingapp.co.kr/api/brands (GET)
 
