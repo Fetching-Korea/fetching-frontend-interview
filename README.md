@@ -1,4 +1,4 @@
-# Fetching 사전 과제 (Demo : [Mail App](https://lee-donghyun.github.io/fetching-frontend-interview/))
+# Fetching 사전 과제 (Demo : [Fetching](https://lee-donghyun.github.io/fetching-frontend-interview/))
 ---
 
 ## 사용 라이브러리
@@ -14,14 +14,14 @@
   이전 페이지(`/productList`)로 돌아왔을 때 설정한 필터 옵션 및 스크롤 위치가 유지.
 
 #### 예시
-<img src="./productListDemo.gif" width="320" height="568" />
+<img src="./productListDemo.gif" width="320" height="693" />
 
 
 ### 2. 브랜드 전체 리스트 페이지 화면 개발(`/brands`)
 - 브랜드 전체 페이지에서 알파벳 클릭 시 해당 알파벳 브랜드 위치로 스크롤이 이동.
 
 ### 예시
-<img src="./brandsDemo.gif" width="320" height="568" />
+<img src="./brandsDemo.gif" width="320" height="693" />
 
 ### 3. Redux
 - redux-thunk를 활용해 비동기 요청 처리
