@@ -7,6 +7,7 @@ import { fetchProductsFromBookmark } from '../redux/action';
 
 const Container = styled.div`
 width:45vw;
+max-width: 32rem;
 height:32rem;
 display:flex;
 flex-direction: column;
