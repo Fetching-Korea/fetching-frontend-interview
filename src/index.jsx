@@ -17,10 +17,10 @@ const Home = () => {
         <div>
             <h1>Fetching frontend interview</h1>
             <h2>이동현 github: <a href="https://github.com/lee-donghyun">@lee-donghyun</a></h2>
-            {/* <Link to='/fetching-frontend-interview/productList'><button>ProductList</button></Link>
-            <Link to='/fetching-frontend-interview/brands'><button>brands</button></Link> */}
-            <Link to='/productList'><button>/ProductList</button></Link>
-            <Link to='/brands'><button>/brands</button></Link>
+            <Link to='/fetching-frontend-interview/productList'><button>ProductList</button></Link>
+            <Link to='/fetching-frontend-interview/brands'><button>brands</button></Link>
+            {/* <Link to='/productList'><button>/ProductList</button></Link>
+            <Link to='/brands'><button>/brands</button></Link> */}
         </div>
     );
 }
@@ -29,12 +29,12 @@ const Main = () => {
     return (
         <BrowserRouter>
             <GlobalStyle />
-            {/* <Route exact path="/fetching-frontend-interview" component={Home} />
+            <Route exact path="/fetching-frontend-interview" component={Home} />
             <Route path="/fetching-frontend-interview/brands" component={Brands} />
-            <Route path="/fetching-frontend-interview/productList" component={ProductListRouter} /> */}
-            <Route exact path="/" component={Home} />
+            <Route path="/fetching-frontend-interview/productList" component={ProductListRouter} />
+            {/* <Route exact path="/" component={Home} />
             <Route path="/brands" component={Brands} />
-            <Route path="/productList" component={ProductListRouter} />
+            <Route path="/productList" component={ProductListRouter} /> */}
         </BrowserRouter>
     );
 }

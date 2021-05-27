@@ -1,4 +1,4 @@
-# Fetching 사전 과제
+# Fetching 사전 과제 (Demo : [Mail App](https://lee-donghyun.github.io/fetching-frontend-interview/))
 ---
 
 ## 무엇을 하면 될까요?
@@ -20,14 +20,14 @@
 - 페이지 이동 목적으로 상품 상세 페이지(`/productDetail/:id`) 화면은 구현하지 않으셔도 됩니다.
 
 #### 예시
-<img src="./image/productlist.gif" width="320" height="568" />
+<img src="./productListDemo.gif" width="320" height="568" />
 
 
 ### 2.브랜드 전체 리스트 페이지 화면 개발(`/brands`)
 - 브랜드 전체 페이지에서 알파벳 클릭 시 해당 알파벳 브랜드 위치로 스크롤이 이동되어야 합니다.
 
 ### 예시
-<img src="./image/brands.gif" width="320" height="568" />
+<img src="./brandsDemo.gif" width="320" height="568" />
 
 
 ## API URL

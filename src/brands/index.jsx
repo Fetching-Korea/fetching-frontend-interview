@@ -32,7 +32,9 @@ font-size:2rem;
 font-weight:bold;
 padding-left:2rem;
 `;
-
+const Margin = styled.div`
+height:10rem;
+`;
 
 const Brands = () => {
 
@@ -64,6 +66,7 @@ const Brands = () => {
                 </CategoryButton>)}
             </Container>
             <TopBar />
+            <Margin/>
             {
                 abc.map(v => {
                     const target = brands.filter(brand => brand.name[0] === v);
